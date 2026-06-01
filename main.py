@@ -16,8 +16,9 @@ EMBEDDING_DIM = 768
 # Setup 011ama LLM and embeddings - fully local, nothing leaves your machine 
 #Settings.llm = Ollama(model="hf.co/unsloth/Llama-3.2-3B-Instruct-GGUF:latest", request_timeout=120.0)
 Settings.llm = Ollama(model="hf.co/unsloth/Llama-3.2-1B-Instruct-GGUF:latest", request_timeout=120.0)
-Settings.embed_model = OllamaEmbedding(model_name="hf.co/nomic-ai/nomic-embed-text-v1.5-GGUF:latest") 
-#Settings.embed_model = OllamaEmbedding(model_name="hf.co/nadeem1362/mxbai-embed-large-v1-Q4_K_M-GGUF:latest") 
+
+Settings.embed_model = OllamaEmbedding(model_name="hf.co/nomic-ai/nomic-embed-text-v1.5-GGUF:latest") # (768 dims)
+#Settings.embed_model = OllamaEmbedding(model_name="hf.co/nadeem1362/mxbai-embed-large-v1-Q4_K_M-GGUF:latest") # (1024 dims)
 
 # Load document 
 print ("Loading document...")
@@ -29,7 +30,7 @@ tq_index = IdMapIndex(dim=EMBEDDING_DIM, bit_width=4)
 vector_store = TurboQuantVectorStore(index=tq_index)
 storage_context = StorageContext.from_defaults(vector_store=vector_store)
 
-# Index the document
+# Index the document (load documents + tokenize + embedding + embedding compress)
 index = VectorStoreIndex.from_documents(
     documents,
     storage_context=storage_context)
