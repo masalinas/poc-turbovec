@@ -1,7 +1,7 @@
 import logging
 
-from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, StorageContext 
 from llama_index.core import Settings
+from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, StorageContext 
 from llama_index.llms.ollama import Ollama 
 from llama_index.embeddings.ollama import OllamaEmbedding
 
