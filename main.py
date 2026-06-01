@@ -1,9 +1,9 @@
 import logging
 
 from llama_index.core import Settings
-from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, StorageContext 
 from llama_index.llms.ollama import Ollama 
 from llama_index.embeddings.ollama import OllamaEmbedding
+from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, StorageContext 
 
 from turbovec.llama_index import TurboQuantVectorStore
 from turbovec import IdMapIndex 
